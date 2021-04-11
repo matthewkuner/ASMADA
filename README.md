@@ -10,11 +10,11 @@ Matthew C. Kuner, Anargyros A. Karakalas, and Dimitris C. Lagoudas, \
 
 
 ## FUNCTIONALITY:
-This software provides a Graphical User Interface (GUI) to allow users to easily input their own experimental data into the tool. This tool then performs the following functions: \
-i) identify thermal cycles from the raw data. \
-ii) apply a pre-defined set of processes to determine twenty-three (23) material properties/parameters, including the four (4) transformation start/finish points. All but three of these properties are defined within the aforementioned ASTM standard. \
-iii) create figures showing the evolution of key properties, alongside an animation showing the tangent line fitting used to determine the transformation start/finish points. \
-iv) export the figures, animation, and a spreadsheet or txt document containing the numerical values for each of the properties obtained from each cycle.
+This software provides a Graphical User Interface (GUI) to allow users to easily input their own experimental data into the tool. This tool then performs the following functions:
+1. identify thermal cycles from the raw data.
+2. apply a pre-defined set of processes to determine twenty-three (23) material properties/parameters, including the four (4) transformation start/finish points. All but three of these properties are defined within the aforementioned ASTM standard.
+3. create figures showing the evolution of key properties, alongside an animation showing the tangent line fitting used to determine the transformation start/finish points.
+4. export the figures, animation, and a spreadsheet or txt document containing the numerical values for each of the properties obtained from each cycle.
 
 
 ## INSTALLATION:
