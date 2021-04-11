@@ -19,7 +19,7 @@ iv) export the figures, animation, and a spreadsheet or txt document containing 
 
 ## INSTALLATION:
 This project was developed in Python 3.7.3. *If* you plan on using the source code, rather than an application (.exe or .dmg) format, then you will need to download the same packages used in developing this project. All packages and versions used in developing this application can be found in the provided "requirements.txt" file. These packages can be easily downloaded by running the following in your command prompt (or Terminal, etc.): \
-    $ pip install -r requirements.txt \
+    ```$ pip install -r requirements.txt``` \
 or running the equivalent within a virtual environment.
 
 
