@@ -14,7 +14,7 @@ This software provides a Graphical User Interface (GUI) to allow users to easily
 i) identify thermal cycles from the raw data. \
 ii) apply a pre-defined set of processes to determine twenty-three (23) material properties/parameters, including the four (4) transformation start/finish points. All but three of these properties are defined within the aforementioned ASTM standard. \
 iii) create figures showing the evolution of key properties, alongside an animation showing the tangent line fitting used to determine the transformation start/finish points. \
-iv) export the figures, animation, and a spreadsheet or txt document containing the numerical values for each of the properties obtained from each cycle. \
+iv) export the figures, animation, and a spreadsheet or txt document containing the numerical values for each of the properties obtained from each cycle.
 
 
 ## INSTALLATION:
@@ -31,4 +31,4 @@ This project is distributed under the GNU General Public License version 3. See 
 Matthew Kuner \
 e-mails: matthewkuner@gatech.edu \
          matthewkuner@gmail.com \
-         matthewkuner@yahoo.com \
+         matthewkuner@yahoo.com
