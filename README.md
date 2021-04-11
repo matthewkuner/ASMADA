@@ -28,8 +28,7 @@ This project is distributed under the GNU General Public License version 3. See 
 
 
 ## AUTHOR INFORMATION:
-Matthew Kuner --\
-e-mails: 
+Matthew Kuner -- conctact at:
 * matthewkuner@gatech.edu
 * matthewkuner@gmail.com
 * matthewkuner@yahoo.com
