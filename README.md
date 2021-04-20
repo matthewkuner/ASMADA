@@ -5,7 +5,7 @@ Automatic Shape Memory Alloy Data Analyzer (ASMADA) source code v 1.0 (last upda
 ## SUMMARY:
 This project serves to automatically analyze isobaric thermal cycling tests of Shape Memory Alloys (SMAs) in accordance with ASTM standard E3097-17. This code accompanies a journal manuscript:\
 Matthew C. Kuner, Anargyros A. Karakalas, and Dimitris C. Lagoudas, \
-"Automated Analysis of Shape Memory Alloy Thermal Cycling Data under Constant Stress: Methodology and Open-Source Software", \
+"ASMADA – A Tool for Automatic Analysis of Shape Memory Alloy Thermal Cycling Data under Constant Stress", \
 [JOURNAL NAME] (YEAR), DOI: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 
