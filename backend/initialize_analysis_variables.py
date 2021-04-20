@@ -40,9 +40,6 @@ def initialize_analysis_variables(GUI_inputs):
                               'mart_coef_thermal_expan'+CTE_unit,
                               'initial_cycle_strain'+strain_unit,
                               'min_strain'+strain_unit, 'max_strain'+strain_unit]
-    
-    # Create DataFrame to store properties/parameters.
-    df_material_parameters = pd.DataFrame(columns = mat_param_column_names)
 
 
     # Create variable to store smoothed temp/strain data (for plot of
@@ -68,4 +65,4 @@ def initialize_analysis_variables(GUI_inputs):
     cycles_that_failed = []
     
     
-    return mat_param_column_names, df_material_parameters,  df_smoothed_data, cooling_sigmoid_guess, heating_sigmoid_guess, cycles_that_failed
+    return mat_param_column_names,  df_smoothed_data, cooling_sigmoid_guess, heating_sigmoid_guess, cycles_that_failed

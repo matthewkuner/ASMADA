@@ -10,7 +10,7 @@ from datetime import datetime
 # WorkerThread manages all aspects of analysis.
 class export_files_class:
 
-    def export_files(self, GUI_inputs, cycles_to_analyze, df_material_parameters, im_animation, fig_all_cycle, fig_temps_separate, fig_temps_all, fig_strains_separate, fig_strains_all, fig_transform_strain, fig_hysteresis, fig_UCT_LCT, fig_coef_thermal_expan):
+    def export_files(self, GUI_inputs, cycles_to_analyze, df_material_parameters, im_animation, fig_all_cycle, fig_temps_separate, fig_temps_all, fig_strains_separate, fig_strains_all, fig_actuation_transform_strain, fig_hysteresis, fig_UCT_LCT, fig_coef_thermal_expan):
         """
         Exports material properties and plots created in previous methods.
 
@@ -155,7 +155,7 @@ class export_files_class:
         fig_temps_all.savefig(export_file_name_prefix + '_analyzed_plot_transform_temps_overlaid.png', **figure_save_settings_kwargs)
         fig_strains_separate.savefig(export_file_name_prefix + '_analyzed_plot_transform_strains_separate.png', **figure_save_settings_kwargs)
         fig_strains_all.savefig(export_file_name_prefix + '_analyzed_plot_transform_strains_overlaid.png', **figure_save_settings_kwargs)
-        fig_transform_strain.savefig(export_file_name_prefix + '_analyzed_plot_transform_actuation_strains.png', **figure_save_settings_kwargs)
+        fig_actuation_transform_strain.savefig(export_file_name_prefix + '_analyzed_plot_transform_actuation_strains.png', **figure_save_settings_kwargs)
         fig_coef_thermal_expan.savefig(export_file_name_prefix + '_analyzed_plot_austenite_martensite_CTE.png', **figure_save_settings_kwargs)
         fig_UCT_LCT.savefig(export_file_name_prefix + '_analyzed_plot_cycle_UCT_LCT.png', **figure_save_settings_kwargs)
         fig_hysteresis.savefig(export_file_name_prefix + '_analyzed_plot_hysteresis_area_width.png', **figure_save_settings_kwargs)

@@ -283,18 +283,44 @@ class make_plots_class:
                               bbox_to_anchor=(1, 0.5))
 
 
-        # Plot evolution of austenite, martensite, and total
-        # transformation strains over all cycles.
-        fig_transform_strain, ax_transform_strain = make_single_plot(strain_axis_label)
-        ax_transform_strain.plot(cycle, transform_strain, **marker_kwargs['Misc2'])
-        ax_transform_strain.plot(cycle, actuation_strain, **marker_kwargs['Misc1'])
-        ax_transform_strain.set_title('Transformation and Actuation Strains', **plot_title_kwargs)
-        ax_transform_strain = resize_axes(ax_transform_strain, 0.8)
-        legend_elements = [Line2D([0],[0], label='Transformation Strain', **legend_marker_kwargs['Misc2']),
-                           Line2D([0],[0], label='Actuation Strain', **legend_marker_kwargs['Misc1'])]
-        ax_transform_strain.legend(handles=legend_elements,
-                                   loc='center left',
-                                   bbox_to_anchor=(1, 0.5))
+        # plots evolution of austenite, martensite, and total transformation strains over all cycles
+        fig_actuation_transform_strain, (ax_act_transform1, ax_act_transform2) = plt.subplots(1, 2, figsize = (18,6), sharey = True)
+        plt.subplots_adjust(wspace = 0.05)
+        ax_act_transform1.plot(cycle, A_s_strain, **marker_kwargs['As'])
+        ax_act_transform1.plot(cycle, A_f_strain, **marker_kwargs['Af'])
+        ax_act_transform1.plot(cycle, transform_strain, **marker_kwargs['Misc3'])
+        ax_act_transform1.set_title('$\epsilon_{A_s}$, $\epsilon_{A_f}$, and Total Transformation Strains', **plot_title_kwargs)
+        # Shrink current axis by 20%
+        box = ax_act_transform1.get_position()
+        ax_act_transform1.set_position([box.x0, box.y0, box.width * 0.8, box.height])
+        # Put a legend to the right of the current axis
+        legend_elements = [Line2D([0],[0], label='$\epsilon_{t}$', **legend_marker_kwargs['Misc3']),
+                           Line2D([0],[0], label='$\epsilon_{A_s}$', **legend_marker_kwargs['As']),
+                           Line2D([0],[0], label='$\epsilon_{A_f}$', **legend_marker_kwargs['Af'])]
+        ax_act_transform1.legend(handles=legend_elements,
+                                 loc='best')
+        ax_act_transform1.set_xlabel('Cycle Number', **axis_label_kwargs)
+        ax_act_transform1.set_ylabel('Strain [%]', **axis_label_kwargs)
+
+        # plots evolution of UCT, LCT, and Actuation strains over all cycles
+        #fig_presentation2, ax_presentation2 = plt.subplots(figsize = (10,6))
+        #plt.subplots_adjust(wspace = 0.3, hspace = 0.5)
+        ax_act_transform2.plot(cycle, UCT_strain, **marker_kwargs['Hot'])
+        ax_act_transform2.plot(cycle, LCT_strain, **marker_kwargs['Cold'])
+        ax_act_transform2.plot(cycle, actuation_strain, **marker_kwargs['Misc4'])
+        ax_act_transform2.set_title('$\mathregular{UCT}$, $\mathregular{LCT}$, and Actuation Strains', **plot_title_kwargs)
+        # Shrink current axis by 20%
+        box = ax_act_transform2.get_position()
+        ax_act_transform2.set_position([box.x0, box.y0, box.width * 0.8, box.height])
+        # Put a legend to the right of the current axis
+        legend_elements = [Line2D([0],[0], label='$\epsilon_{act}$', **legend_marker_kwargs['Misc4']),
+                           Line2D([0],[0], label='$\epsilon_{LCT}$', **legend_marker_kwargs['Cold']),
+                           Line2D([0],[0], label='$\epsilon_{UCT}$', **legend_marker_kwargs['Hot'])]
+        ax_act_transform2.legend(handles=legend_elements,
+                                 loc='best')
+        ax_act_transform2.set_xlabel('Cycle Number', **axis_label_kwargs)
+        ax_act_transform2.set_ylabel('Strain [%]', **axis_label_kwargs)
+        ax_act_transform2.yaxis.set_tick_params(labelleft=True)
 
 
         # Function specifically made to make the plot of the hysteresis
@@ -389,71 +415,9 @@ class make_plots_class:
         ax_coef_thermal_expan.legend(handles=legend_elements,
                                      loc='center left',
                                      bbox_to_anchor=(1, 0.5))
-        
-        
-        
-##############################################################################
-#####                  REMOVE THIS BEFORE PUBLICATION
-##############################################################################
-##############################################################################
-
-        figure_save_settings_kwargs = dict(dpi=600, bbox_inches='tight', pad_inches=0.25)            
-
-        # plots evolution of austenite, martensite, and total transformation strains over all cycles
-        fig_presentation, (ax_presentation1, ax_presentation2) = plt.subplots(1, 2, figsize = (18,6), sharey = True)
-        plt.subplots_adjust(wspace = 0.05)
-        ax_presentation1.plot(cycle, A_s_strain, **marker_kwargs['As'])
-        ax_presentation1.plot(cycle, A_f_strain, **marker_kwargs['Af'])
-        ax_presentation1.plot(cycle, transform_strain, **marker_kwargs['Misc3'])
-        ax_presentation1.set_title('$\epsilon_{A_s}$, $\epsilon_{A_f}$, and Total Transformation Strains', **plot_title_kwargs)
-        # Shrink current axis by 20%
-        box = ax_presentation1.get_position()
-        ax_presentation1.set_position([box.x0, box.y0, box.width * 0.8, box.height])
-        # Put a legend to the right of the current axis
-        legend_elements = [Line2D([0],[0], label='$\epsilon_{t}$', **legend_marker_kwargs['Misc3']),
-                            Line2D([0],[0], label='$\epsilon_{A_s}$', **legend_marker_kwargs['As']),
-                            Line2D([0],[0], label='$\epsilon_{A_f}$', **legend_marker_kwargs['Af'])]
-        ax_presentation1.legend(handles=legend_elements,
-                                    loc='lower right')
-        ax_presentation1.set_xlabel('Cycle Number', **axis_label_kwargs)
-        ax_presentation1.set_ylabel('Strain [%]', **axis_label_kwargs)
-
-        #fig_presentation.savefig('plot_for' + '_presentation.png', dpi=600)
-
-        
-        # plots evolution of UCT, LCT, and Actuation strains over all cycles
-        #fig_presentation2, ax_presentation2 = plt.subplots(figsize = (10,6))
-        #plt.subplots_adjust(wspace = 0.3, hspace = 0.5)
-        ax_presentation2.plot(cycle, UCT_strain, **marker_kwargs['Hot'])
-        ax_presentation2.plot(cycle, LCT_strain, **marker_kwargs['Cold'])
-        ax_presentation2.plot(cycle, actuation_strain, **marker_kwargs['Misc4'])
-        ax_presentation2.set_title('$\mathregular{UCT}$, $\mathregular{LCT}$, and Actuation Strains', **plot_title_kwargs)
-        # Shrink current axis by 20%
-        box = ax_presentation2.get_position()
-        ax_presentation2.set_position([box.x0, box.y0, box.width * 0.8, box.height])
-        # Put a legend to the right of the current axis
-        legend_elements = [Line2D([0],[0], label='$\epsilon_{act}$', **legend_marker_kwargs['Misc4']),
-                            Line2D([0],[0], label='$\epsilon_{LCT}$', **legend_marker_kwargs['Cold']),
-                            Line2D([0],[0], label='$\epsilon_{UCT}$', **legend_marker_kwargs['Hot'])]
-        ax_presentation2.legend(handles=legend_elements,
-                                    loc='lower right')
-        ax_presentation2.set_xlabel('Cycle Number', **axis_label_kwargs)
-        ax_presentation2.set_ylabel('Strain [%]', **axis_label_kwargs)
-        ax_presentation2.yaxis.set_tick_params(labelleft=True)
-
-        fig_presentation.savefig('plot_for' + '_presentation.png', **figure_save_settings_kwargs)
 
 
-##############################################################################
-#####                      REMOVE THIS BEFORE PUBLICATION
-##############################################################################
-##############################################################################
-        
-        
-        
-        
-        
-        
 
 
-        return fig_all_cycle, fig_temps_separate, fig_temps_all, fig_strains_separate, fig_strains_all, fig_transform_strain, fig_hysteresis, fig_UCT_LCT, fig_coef_thermal_expan
+
+        return fig_all_cycle, fig_temps_separate, fig_temps_all, fig_strains_separate, fig_strains_all, fig_actuation_transform_strain, fig_hysteresis, fig_UCT_LCT, fig_coef_thermal_expan

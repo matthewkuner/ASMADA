@@ -41,7 +41,8 @@ ASMADA_folder/
 │    ├── reset_error_messages.py
 │    ├── reset_inputs.py
 │    ├── run_analysis.py
-│    ├── structure.py
+│    ├── structure.py       
+│    ├── structure.ui    # can be edited in Qt Designer to change GUI layout; not imported/used directly
 │    ├── terminate_worker.py
 │    └── update_progress.py
 ├── backend/
