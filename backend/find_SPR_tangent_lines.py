@@ -7,8 +7,8 @@ from backend.find_nearest import find_nearest
 
 def find_SPR_tangent_lines(temps, strain, left_extrema, right_extrema, TRR_slope, TRR_intercept, min_temp, max_temp):
     """
-    Finds the left and right tangent lines for the single-phase 
-    regions of a cycle branch.
+    Finds the left and right tangent lines for the single-phase regions of
+    a cycle branch.
     """                
     
     def find_left_SPR_tangent(temps, strain, TRR_slope, TRR_intercept, left_extrema, min_temp):
@@ -28,26 +28,20 @@ def find_SPR_tangent_lines(temps, strain, left_extrema, right_extrema, TRR_slope
         temps = temps[round(.01*len(temps)):round(0.99*len(temps))]
         strain = strain[round(.01*len(strain)):round(0.99*len(strain))]
         
-        # Find intersection between the transformation response
-        # region line and a horizontal line at the extreme strain
-        # value for this side of the cycle branch.
         maximum_left_single_phase_region_temp, *_ = line_intersection(TRR_slope, TRR_intercept, 0, left_extrema)
         left_SPR_max_ind = find_nearest(temps, maximum_left_single_phase_region_temp)
-        # Find the index of the point corresponding to the 
-        # halfway point between the min_temp and the
+        # Finds index of halway point between the min_temp and the
         # maximum_left_single_phase_region_temp point.
         left_SPR_cutoff = find_nearest(temps, (maximum_left_single_phase_region_temp + min_temp)/2)
         
-        # Ensure at least 3 points (or 5% of the points in the 
-        # branch) are used to determine the single-phase region 
-        # tangent line. 
+        # Ensure at least 3 points (or 5% of the points in the branch) are used
+        # to determine the single-phase region tangent line. 
         if left_SPR_cutoff >= left_SPR_max_ind or any(val < 3 for val in [left_SPR_cutoff, left_SPR_max_ind]):
             left_SPR_cutoff = max(round(0.05*len(temps)), 3)
             left_SPR_max_ind = max(round(0.2*len(temps)), 4)
         
-        # Apply linear fit to the selected points. The determined
-        # line is the single-phase region line for this side of the
-        # cycle branch.
+        # Apply linear fit to the selected points. The determined line is the
+        # single-phase region line for this side of the cycle branch.
         left_SPR_slope, left_SPR_intercept, r_value, *_ = linregress(temps[:left_SPR_cutoff],
                                                                    strain[:left_SPR_cutoff])
         
@@ -67,29 +61,24 @@ def find_SPR_tangent_lines(temps, strain, left_extrema, right_extrema, TRR_slope
         above-described intersection points.
         """
         
-        # Trim out the first and last 1% of points, as they are
-        # the most likely to have outliers. This is also unlikely
-        # to affect the tangent lines determined.
+        # Trim out the first and last 1% of points.
         temps = temps[round(.01*len(temps)):round(0.99*len(temps))]
         strain = strain[round(.01*len(strain)):round(0.99*len(strain))]
         
         minimum_right_single_phase_region_temp, *_ = line_intersection(TRR_slope, TRR_intercept, 0, right_extrema)                  
         right_SPR_min_ind = find_nearest(temps, minimum_right_single_phase_region_temp)
-        # Find the index of the point corresponding to the 
-        # halfway point between the max_temp and the
+        # Finds index of halfway point between the max_temp and the
         # minimum_right_single_phase_region_temp point.
         right_SPR_cutoff = find_nearest(temps, (minimum_right_single_phase_region_temp + max_temp)/2)
         
-        # Ensure at least 3 points (or 5% of the points in the 
-        # branch) are used to determine the single-phase region 
-        # tangent line. 
+        # Ensure at least 3 points (or 5% of the points in the branch) are used
+        # to determine the single-phase region tangent line. 
         if right_SPR_cutoff <= right_SPR_min_ind or any(val > len(temps)-3 for val in [right_SPR_cutoff, right_SPR_min_ind]):
             right_SPR_cutoff = min(round(0.95*len(temps)), len(temps)-3)
             right_SPR_min_ind = min(round(0.8*len(temps)), len(temps)-4)
         
-        # Apply linear fit to the selected points. The determined
-        # line is the single-phase region line for this side of the
-        # cycle branch.
+        # Apply linear fit to the selected points. The determined line is the
+        # single-phase region line for this side of the cycle branch.
         right_SPR_slope, right_SPR_intercept, r_value, *_ = linregress(temps[right_SPR_cutoff:],
                                                                          strain[right_SPR_cutoff:])
             

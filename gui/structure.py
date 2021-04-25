@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'Automatic_Fatigue_Analysis_GUI_4_19_2021.ui'
+# Form implementation generated from reading ui file 'structure.ui'
 #
 # Created by: PyQt5 UI code generator 5.9.2
 #
@@ -252,7 +252,7 @@ class Ui_MainWindow(object):
         self.preview_table.horizontalHeader().setMinimumSectionSize(125)
         self.preview_table.horizontalHeader().setSortIndicatorShown(False)
         self.preview_table.horizontalHeader().setStretchLastSection(False)
-        self.preview_table.verticalHeader().setVisible(True)
+        self.preview_table.verticalHeader().setVisible(False)
         self.preview_table.verticalHeader().setDefaultSectionSize(25)
         self.preview_table.verticalHeader().setHighlightSections(False)
         self.preview_table.verticalHeader().setMinimumSectionSize(20)
@@ -623,6 +623,114 @@ class Ui_MainWindow(object):
         self.tabWidget.addTab(self.widget, "")
         self.tab_3 = QtWidgets.QWidget()
         self.tab_3.setObjectName("tab_3")
+        self.label_4 = QtWidgets.QLabel(self.tab_3)
+        self.label_4.setGeometry(QtCore.QRect(10, 10, 1111, 61))
+        font = QtGui.QFont()
+        font.setPointSize(14)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_4.setFont(font)
+        self.label_4.setObjectName("label_4")
+        self.label_8 = QtWidgets.QLabel(self.tab_3)
+        self.label_8.setGeometry(QtCore.QRect(10, 80, 101, 31))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_8.setFont(font)
+        self.label_8.setObjectName("label_8")
+        self.label_12 = QtWidgets.QLabel(self.tab_3)
+        self.label_12.setGeometry(QtCore.QRect(20, 110, 1091, 111))
+        self.label_12.setObjectName("label_12")
+        self.label_15 = QtWidgets.QLabel(self.tab_3)
+        self.label_15.setGeometry(QtCore.QRect(10, 240, 141, 31))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_15.setFont(font)
+        self.label_15.setObjectName("label_15")
+        self.label_16 = QtWidgets.QLabel(self.tab_3)
+        self.label_16.setGeometry(QtCore.QRect(20, 270, 1091, 191))
+        self.label_16.setObjectName("label_16")
+        self.label_21 = QtWidgets.QLabel(self.tab_3)
+        self.label_21.setGeometry(QtCore.QRect(10, 480, 141, 31))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_21.setFont(font)
+        self.label_21.setObjectName("label_21")
+        self.label_22 = QtWidgets.QLabel(self.tab_3)
+        self.label_22.setGeometry(QtCore.QRect(20, 510, 1091, 131))
+        self.label_22.setObjectName("label_22")
+        self.label_23 = QtWidgets.QLabel(self.tab_3)
+        self.label_23.setGeometry(QtCore.QRect(20, 690, 1091, 21))
+        self.label_23.setObjectName("label_23")
+        self.label_24 = QtWidgets.QLabel(self.tab_3)
+        self.label_24.setGeometry(QtCore.QRect(10, 660, 141, 31))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_24.setFont(font)
+        self.label_24.setObjectName("label_24")
+        self.label_25 = QtWidgets.QLabel(self.tab_3)
+        self.label_25.setGeometry(QtCore.QRect(20, 760, 1091, 91))
+        self.label_25.setObjectName("label_25")
+        self.label_26 = QtWidgets.QLabel(self.tab_3)
+        self.label_26.setGeometry(QtCore.QRect(10, 730, 211, 31))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_26.setFont(font)
+        self.label_26.setObjectName("label_26")
+        self.line_4 = QtWidgets.QFrame(self.tab_3)
+        self.line_4.setGeometry(QtCore.QRect(10, 230, 1110, 21))
+        font = QtGui.QFont()
+        font.setPointSize(1)
+        self.line_4.setFont(font)
+        self.line_4.setLineWidth(1)
+        self.line_4.setFrameShape(QtWidgets.QFrame.HLine)
+        self.line_4.setFrameShadow(QtWidgets.QFrame.Sunken)
+        self.line_4.setObjectName("line_4")
+        self.line_5 = QtWidgets.QFrame(self.tab_3)
+        self.line_5.setGeometry(QtCore.QRect(10, 470, 1110, 21))
+        font = QtGui.QFont()
+        font.setPointSize(1)
+        self.line_5.setFont(font)
+        self.line_5.setLineWidth(1)
+        self.line_5.setFrameShape(QtWidgets.QFrame.HLine)
+        self.line_5.setFrameShadow(QtWidgets.QFrame.Sunken)
+        self.line_5.setObjectName("line_5")
+        self.line_6 = QtWidgets.QFrame(self.tab_3)
+        self.line_6.setGeometry(QtCore.QRect(10, 70, 1110, 21))
+        font = QtGui.QFont()
+        font.setPointSize(1)
+        self.line_6.setFont(font)
+        self.line_6.setLineWidth(1)
+        self.line_6.setFrameShape(QtWidgets.QFrame.HLine)
+        self.line_6.setFrameShadow(QtWidgets.QFrame.Sunken)
+        self.line_6.setObjectName("line_6")
+        self.line_7 = QtWidgets.QFrame(self.tab_3)
+        self.line_7.setGeometry(QtCore.QRect(10, 650, 1110, 21))
+        font = QtGui.QFont()
+        font.setPointSize(1)
+        self.line_7.setFont(font)
+        self.line_7.setLineWidth(1)
+        self.line_7.setFrameShape(QtWidgets.QFrame.HLine)
+        self.line_7.setFrameShadow(QtWidgets.QFrame.Sunken)
+        self.line_7.setObjectName("line_7")
+        self.line_8 = QtWidgets.QFrame(self.tab_3)
+        self.line_8.setGeometry(QtCore.QRect(10, 720, 1110, 21))
+        font = QtGui.QFont()
+        font.setPointSize(1)
+        self.line_8.setFont(font)
+        self.line_8.setLineWidth(1)
+        self.line_8.setFrameShape(QtWidgets.QFrame.HLine)
+        self.line_8.setFrameShadow(QtWidgets.QFrame.Sunken)
+        self.line_8.setObjectName("line_8")
         self.tabWidget.addTab(self.tab_3, "")
         MainWindow.setCentralWidget(self.centralwidget)
 
@@ -687,6 +795,38 @@ class Ui_MainWindow(object):
         self.label_13.setText(_translate("MainWindow", "<html><head/><body><p>row(s)</p></body></html>"))
         self.label_14.setText(_translate("MainWindow", "<html><head/><body><p>(.csv or .txt only)</p></body></html>"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.widget), _translate("MainWindow", "Main"))
+        self.label_4.setText(_translate("MainWindow", "Automatic Shape Memory Alloy Data Analyzer (ASMADA) version 1.0 \n"
+"(last updated April 2021)"))
+        self.label_8.setText(_translate("MainWindow", "Summary"))
+        self.label_12.setText(_translate("MainWindow", "This project serves to automatically analyze isobaric thermal cycling tests of Shape Memory Alloys (SMAs) in accordance with ASTM standard \n"
+"E3097-17. This code accompanies a journal manuscript:\n"
+"Matthew C. Kuner, Anargyros A. Karakalas, and Dimitris C. Lagoudas, \n"
+"\"ASMADA – A Tool for Automatic Analysis of Shape Memory Alloy Thermal Cycling Data under Constant Stress\",\n"
+"[JOURNAL NAME] (YEAR), DOI: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"))
+        self.label_15.setText(_translate("MainWindow", "Functionality"))
+        self.label_16.setText(_translate("MainWindow", "This software provides a Graphical User Interface (GUI) to allow users to easily input their own experimental data into the tool. This tool then \n"
+"performs the following functions:\n"
+"i) identify thermal cycles from the raw data.\n"
+"ii) apply a pre-defined set of processes to determine twenty-three (23) material properties/parameters, including the four (4) transformation \n"
+"    start/finish points. All but three of these properties are defined within the aforementioned ASTM standard.\n"
+"iii) create figures showing the evolution of key properties, alongside an animation showing the tangent line fitting used to determine the \n"
+"    transformation start/finish points.\n"
+"iv) export the figures, animation, and a spreadsheet or txt document containing the numerical values for each of the properties obtained from each \n"
+"    cycle."))
+        self.label_21.setText(_translate("MainWindow", "Installation"))
+        self.label_22.setText(_translate("MainWindow", "This project was developed in Python 3.7.3. *If* you plan on using the source code, rather than an application (.exe or .dmg) format, then you will \n"
+"need to download the same packages used in developing this project. All packages and versions used in developing this application can be found \n"
+"in the provided \"requirements.txt\" file. These packages can be easily downloaded by running the following in your command prompt (or Terminal, \n"
+"etc.):\n"
+"    $ pip install -r requirements.txt\n"
+"or by running the equivalent within a virtual environment."))
+        self.label_23.setText(_translate("MainWindow", "This project is distributed under the GNU General Public License version 3. See \"LICENSE.txt\" for more information."))
+        self.label_24.setText(_translate("MainWindow", "License"))
+        self.label_25.setText(_translate("MainWindow", "Matthew Kuner\n"
+"e-mails: matthewkuner@gatech.edu\n"
+"             matthewkuner@gmail.com\n"
+"             matthewkuner@yahoo.com"))
+        self.label_26.setText(_translate("MainWindow", "Author Information"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), _translate("MainWindow", "Read Me / Help"))
 
 

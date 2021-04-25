@@ -19,29 +19,32 @@ class export_files_class:
         ----------
         GUI_inputs : pandas DataFrame
             Contains all user inputs.
+        cycles_to_analyze : list
+            Used to determine whether or not to output animation video.
         df_material_parameters : pandas DataFrame
             Contains all material parameters calculated in the
             'analyze_data' method.
         im_animation : matplotlib animation (???)
-            --
+            Animation showing tangent line fitting to determine transformation
+            start/finish points.
         fig_all_cycle : matplotlib figure
-            --
+            All cycles plotted together (temperature vs. strain)
         fig_temps_separate : matplotlib figure
-            --
+            Transformation start/finish temperatures plotted in separate plots.
         fig_temps_all : matplotlib figure
-            --
+            Transformation start/finish temperatures plotted on the same plot.
         fig_strains_separate : matplotlib figure
-            --
+            Transformation start/finish strains plotted on separate plots.
         fig_strains_all : matplotlib figure
-            --
-        fig_transform_strain : matplotlib figure
-            --
+            Transformation start/finish strains plotted on the same plot.
+        fig_actuation_transform_strain : matplotlib figure
+            Separate plots for actuation and total transformation strains.
         fig_hysteresis : matplotlib figure
-            --
-        fig_minmax_temps : matplotlib figure
-            --
+            Hysteresis area and hysteresis width plot.
+        fig_UCT_LCT : matplotlib figure
+            Separate plots of UCT and LCT.
         fig_coef_thermal_expan : matplotlib figure
-            --
+            Plot of martensite and austenite CTEs.
 
         Returns
         -------
@@ -122,9 +125,9 @@ class export_files_class:
                 f.write(comments_to_append)
             # Then append df_material_parameters to the created file.
             df_material_parameters.to_csv(export_file_name_prefix + '_analyzed' + '.csv', mode = 'a', index = False, encoding = 'utf-8')
+        
         # Export process for .xlsx files.
         elif export_as_excel_workbook:
-            # Create writer for excel file.
             writer = pd.ExcelWriter(export_file_name_prefix + '_analyzed' + '.xlsx')
             # Save column names, add them onto file later so that the 
             # file writer does not format the headers incorrectly.
@@ -134,13 +137,13 @@ class export_files_class:
             df_material_parameters.to_excel(writer, sheet_name = 'Sheet1', startcol = 0, startrow = 5, index = False, header = False)
             worksheet = writer.sheets['Sheet1']
             # Write analysis notes to top of excel sheet.
-            worksheet.write_string(0, 0, file_analyzed_string)
-            worksheet.write_string(1, 0, date_time_string)
-            # Write unformatted column names above data.
+            worksheet.write_string(0, 0, file_analyzed_string) # name of original file
+            worksheet.write_string(1, 0, date_time_string) # time/date analysis was performed
+            # Write column names above data.
             for idx, val in enumerate(column_list):
                 worksheet.write(4, idx, val)
-            # Save file.
             writer.save()
+        
         # Export process for .txt files.
         elif export_as_txt:
             col_names = df_material_parameters.columns

@@ -122,9 +122,10 @@ class analyze_data_class:
         fig_anim, ax_anim, animation_frame_stack, frame_capture_freq = initialize_animation(cycles_to_analyze, 
                                                                                             GUI_inputs)
 
-        mat_param_column_names,  df_smoothed_data, cooling_sigmoid_guess, heating_sigmoid_guess, cycles_that_failed = initialize_analysis_variables(GUI_inputs)
+        mat_param_column_names, dict_material_parameters, df_smoothed_data, cooling_sigmoid_guess, heating_sigmoid_guess, cycles_that_failed = initialize_analysis_variables(GUI_inputs)
         
-        mat_param_dict_list = [] #used in place of repeatedly calling df.append for efficiency.
+        
+        
 
         for i in cycles_to_analyze:
             try:
@@ -521,28 +522,28 @@ class analyze_data_class:
 
 
 
-                cur_cycle_mat_params=[i,
-                                      M_s_temp, M_s_strain,
-                                      M_f_temp, M_f_strain,
-                                      A_s_temp, A_s_strain,
-                                      A_f_temp, A_f_strain,
-                                      LCT, LCT_strain,
-                                      UCT, UCT_strain,
-                                      actuation_strain,
-                                      transform_strain,
-                                      TRIP_strain,
-                                      hysteresis_area,
-                                      hysteresis_width, thermal_transform_span,
-                                      aust_coef_thermal_expan, mart_coef_thermal_expan,
-                                      initial_cycle_strain,
-                                      min_strain, max_strain]
+                cur_cycle_material_parameters=[i,
+                                               M_s_temp, M_s_strain,
+                                               M_f_temp, M_f_strain,
+                                               A_s_temp, A_s_strain,
+                                               A_f_temp, A_f_strain,
+                                               LCT, LCT_strain,
+                                               UCT, UCT_strain,
+                                               actuation_strain,
+                                               transform_strain,
+                                               TRIP_strain,
+                                               hysteresis_area,
+                                               hysteresis_width, thermal_transform_span,
+                                               aust_coef_thermal_expan, mart_coef_thermal_expan,
+                                               initial_cycle_strain,
+                                               min_strain, max_strain]
 
 
                 # Add transformation temps/strains from this cycle to the 
                 # 'df_material_parameters' DataFrame.
-                cur_cycle_mat_param_dict = dict(zip(mat_param_column_names,cur_cycle_mat_params))
+                dict_cur_cycle_material_parameters = dict(zip(mat_param_column_names, cur_cycle_material_parameters))
 
-                mat_param_dict_list.append(cur_cycle_mat_param_dict)
+                dict_material_parameters.append(dict_cur_cycle_material_parameters)
 
 
 
@@ -659,14 +660,14 @@ class analyze_data_class:
                 # that there is some indication that a cycle completely 
                 # failed (which would not be accomplished by simply
                 # excluding failed cycles from exported files).
-                cur_cycle_mat_params = [None] * 24
+                cur_cycle_material_parameters = [None] * 24
 
 
                 # Add transformation temps/strains from this cycle to the 
                 # 'df_material_parameters' DataFrame.
-                cur_cycle_mat_param_dict = dict(zip(mat_param_column_names,cur_cycle_mat_params))
+                dict_cur_cycle_material_parameters = dict(zip(mat_param_column_names,cur_cycle_material_parameters))
 
-                mat_param_dict_list.append(cur_cycle_mat_param_dict)
+                dict_material_parameters.append(dict_cur_cycle_material_parameters)
                 
                 
                 
@@ -686,7 +687,8 @@ class analyze_data_class:
         if str(cycles_that_failed) != '[]':
             print('One or more material parameters was not able to be calculated for the following cycles: ' + str(cycles_that_failed))
         
-        df_material_parameters = pd.DataFrame.from_dict(mat_param_dict_list)
+        # converts dictionary list to pandas DataFrame.
+        df_material_parameters = pd.DataFrame.from_dict(dict_material_parameters)
 
 
         return df_material_parameters, df_smoothed_data, im_animation

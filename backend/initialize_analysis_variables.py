@@ -59,10 +59,11 @@ def initialize_analysis_variables(GUI_inputs):
     heating_sigmoid_guess[:, 0] = 0.1
     heating_sigmoid_guess[:, 1] = 0
 
+    dict_material_parameters = [] #used for efficiency, eventually converted to pandas DataFrame.
 
     # Initialize variable to capture which cycles, if any, were not
     # able to be analyzed
     cycles_that_failed = []
     
     
-    return mat_param_column_names,  df_smoothed_data, cooling_sigmoid_guess, heating_sigmoid_guess, cycles_that_failed
+    return mat_param_column_names, dict_material_parameters, df_smoothed_data, cooling_sigmoid_guess, heating_sigmoid_guess, cycles_that_failed
