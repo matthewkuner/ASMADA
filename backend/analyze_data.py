@@ -360,10 +360,8 @@ class analyze_data_class:
                 # intersection between the appropriate tangent lines.
                 M_s_temp, M_s_strain = line_intersection(cool_TRR_slope, cool_TRR_intercept, cool_right_SPR_slope, cool_right_SPR_intercept)
                 M_f_temp, M_f_strain = line_intersection(cool_TRR_slope, cool_TRR_intercept, cool_left_SPR_slope, cool_left_SPR_intercept)
-#                M_f_temp, M_f_strain = line_intersection(cool_TRR_slope, cool_TRR_intercept, heat_left_SPR_slope, heat_left_SPR_intercept)   # such a line would be used for constitutive modeling (not performed here)
                 A_s_temp, A_s_strain = line_intersection(heat_TRR_slope, heat_TRR_intercept, heat_left_SPR_slope, heat_left_SPR_intercept)
                 A_f_temp, A_f_strain = line_intersection(heat_TRR_slope, heat_TRR_intercept, heat_right_SPR_slope, heat_right_SPR_intercept)
-#                A_f_temp, A_f_strain = line_intersection(heat_TRR_slope, heat_TRR_intercept, cool_right_SPR_slope, cool_right_SPR_intercept)   # such a line would be used for constitutive modeling (not performed here)
 
 
                 # Calculate min and max cycle strain (NOT specified by an
@@ -396,7 +394,7 @@ class analyze_data_class:
                 # temperature unit. If '[°F]' is selected, the valid CTE
                 # is multiplied by 1.8, as 1 Celsius unit is equal to
                 # 1.8 Fahrenheit units (note this is distinct from a direct 
-                # direct converion from °C to °F).
+                # converion from °C to °F).
                 if GUI_inputs.temp_unit.values[0] == '[°F]':
                     valid_CTE = 1.8 * valid_CTE
 
@@ -452,9 +450,9 @@ class analyze_data_class:
                 # First, ensure that the two branches go to the exact
                 # same maximum temperature.
                 # Each branch (coolign and heating) has a maximum 
-                # temperature. One branch has a lower maximum temperature.
-                # The other branch may have several points above this
-                # temperature. These points are removed, and subsequently
+                # temperature. One branch has a lower maximum temperature than
+                # the other. The other branch may have several points above
+                # this temperature. These points are removed, and subsequently
                 # replaced with an interpolated point--this ensures that
                 # both branches go to *exactly* the same maximum
                 # temperature.
@@ -479,9 +477,9 @@ class analyze_data_class:
                 # Second, ensure that the two branches go to the exact
                 # same minimum temperature.
                 # Each branch (coolign and heating) has a minimum 
-                # temperature. One branch has a higher minimum temperature.
-                # The other branch may have several points below this
-                # temperature. These points are removed, and subsequently
+                # temperature. One branch has a higher minimum temperature than
+                # the other. The other branch may have several points below
+                # this temperature. These points are removed, and subsequently
                 # replaced with an interpolated point--this ensures that
                 # both branches go to *exactly* the same minimum
                 # temperature.
@@ -539,8 +537,8 @@ class analyze_data_class:
                                                min_strain, max_strain]
 
 
-                # Add transformation temps/strains from this cycle to the 
-                # 'df_material_parameters' DataFrame.
+                # Add transformation temps/strains from this cycle to
+                # 'dict_material_parameters'.
                 dict_cur_cycle_material_parameters = dict(zip(mat_param_column_names, cur_cycle_material_parameters))
 
                 dict_material_parameters.append(dict_cur_cycle_material_parameters)
@@ -664,7 +662,7 @@ class analyze_data_class:
 
 
                 # Add transformation temps/strains from this cycle to the 
-                # 'df_material_parameters' DataFrame.
+                # 'dict_material_parameters'.
                 dict_cur_cycle_material_parameters = dict(zip(mat_param_column_names,cur_cycle_material_parameters))
 
                 dict_material_parameters.append(dict_cur_cycle_material_parameters)

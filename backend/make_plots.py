@@ -47,14 +47,14 @@ class make_plots_class:
         fig_all_cycle : matplotlib figure
             Figure of all cycles for export.
         fig_temps_separate : matplotlib figure
-            Figure of transformation temperatures (plotted separately).
+            Figure of transformation start/finish temperatures (plotted separately).
         fig_temps_all : matplotlib figure
-            Figure of transformation temperatures (plotted together).
+            Figure of transformation start/finish temperatures (plotted together).
         fig_strains_separate : matplotlib figure
-            Figure of transformation strains (plotted separately).
+            Figure of transformation start/finish strains (plotted separately).
         fig_strains_all : matplotlib figure
-            Figure of transformation strains (plotted together).
-        fig_transform_strain : matplotlib figure
+            Figure of transformation start/finish strains (plotted together).
+        fig_actuation_transform_strain : matplotlib figure
             Figure of transformation strain and actuation strain.
         fig_hysteresis : matplotlib figure
             Figure of HWIDTH and HAREA.
@@ -234,6 +234,7 @@ class make_plots_class:
         ax_temps_separate[1, 1].set_title('$\mathregular{A_f}$', **plot_title_kwargs)
 
 
+
         # Plot evolution of all four transformation temperatures over all
         # cycles on the same plot.
         fig_temps_all, ax_temps_all = make_single_plot(temp_axis_label)
@@ -252,6 +253,7 @@ class make_plots_class:
                             bbox_to_anchor=(1, 0.5))
 
 
+
         # Plotbranch using Savitzky-Golay filter. evolution of all four transformation strains over all
         # cycles on separate plots.
         fig_strains_separate, ax_strains_separate = make_multi_plot(strain_axis_label,2,2)
@@ -264,6 +266,7 @@ class make_plots_class:
         ax_strains_separate[0, 1].set_title('$\mathregular{A_s}$', **plot_title_kwargs)
         ax_strains_separate[1, 1].set_title('$\mathregular{A_f}$', **plot_title_kwargs)
                 
+        
 
         # Plot evolution of all four transformation strains over all
         # cycles on the same plot.
@@ -281,6 +284,7 @@ class make_plots_class:
         ax_strains_all.legend(handles=legend_elements,
                               loc='center left',
                               bbox_to_anchor=(1, 0.5))
+
 
 
         # plots evolution of austenite, martensite, and total transformation strains over all cycles
@@ -321,6 +325,7 @@ class make_plots_class:
         ax_act_transform2.set_xlabel('Cycle Number', **axis_label_kwargs)
         ax_act_transform2.set_ylabel('Strain [%]', **axis_label_kwargs)
         ax_act_transform2.yaxis.set_tick_params(labelleft=True)
+
 
 
         # Function specifically made to make the plot of the hysteresis
@@ -371,6 +376,7 @@ class make_plots_class:
                              loc='best')
 
 
+
         # Plot UCT and LCT over all cycles.
         fig_UCT_LCT, (ax_UCT, ax_LCT) = plt.subplots(2, 1, sharex=True, figsize=(8, 6))
         plt.subplots_adjust(hspace = 0.2)
@@ -400,6 +406,7 @@ class make_plots_class:
                            bbox_to_anchor=(.9, 0.50))
         fig_UCT_LCT.text(0.5, 0.05, 'Cycle Number', ha='center', **axis_label_kwargs)
         fig_UCT_LCT.text(0.03, 0.5, temp_axis_label, va='center', rotation='vertical', **axis_label_kwargs)
+
 
 
         # Plot evolution of the two coefficients of thermal expansion over

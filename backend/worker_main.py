@@ -46,7 +46,7 @@ class WorkerThread(QtCore.QThread,
 
         print('Analysis Start')
 
-        # For those who wish to edit the source code, an analysis timer is used.
+        # For those who wish to use/edit the source code, an analysis timer is used.
         start = time.perf_counter()            
 
 
@@ -101,6 +101,7 @@ class WorkerThread(QtCore.QThread,
                 error.append(e)
 
 
+
         # Print out the first error encountered. Helpful for those who wish to
         # edit the code.
         if len(error) > 0:
@@ -111,6 +112,7 @@ class WorkerThread(QtCore.QThread,
 
         # Close all plots.
         plt.close('all')
+        
         
         
         # Helpful for those who wish to edit the code.

@@ -9,13 +9,13 @@ from backend.modified_sigmoid import modified_sigmoid
 def find_TRR_tangent_line(temps, strain, min_strain, max_strain, min_temp, max_temp, left_asymp, right_asymp, sigmoid_guess):
     """
     Fits modified sigmoid function to current cycle branch. The
-    transformation response region line is determined as the
+    transformation response region (TRR) line is determined as the
     tangent line at the point of the maximum slope of the fitted
     function.
     """
     
-    # Initial guess for the optimal parameters to fit the modified
-    # sigmoid to the data from the current cycle.
+    # Initial guess for the optimal parameters to fit the modified sigmoid
+    # to the data from the current cycle.
     init_point_index = np.argmin(np.abs(strain - (max_strain + min_strain)/2))
     x0 = temps[init_point_index]
     y0 = strain[init_point_index]
@@ -42,22 +42,22 @@ def find_TRR_tangent_line(temps, strain, min_strain, max_strain, min_temp, max_t
         sigmoid_guess[:, 1] = np.concatenate((sigmoid_guess[1:,1], [popt[3]]))
 
     # Find index of the point with the maximum slope on the fitted
-    # smigoid function.
+    # sigmoid function.
     fit_x = np.linspace(min_temp, max_temp, 500)
     fit_y = modified_sigmoid(fit_x, *popt)
     curve_fit_slope = np.gradient(fit_y)/np.gradient(fit_x)
     sigmoid_fit_max_slope_ind = np.argmax(abs(curve_fit_slope))
     sigmoid_fit_max_slope_ind = sigmoid_fit_max_slope_ind.item(0)
 
-    # Find transformation response region line as the tangent line
-    # at steepest point of the fitted sigmoid.
+    # Find transformation response region line as the tangent line at the
+    # steepest point of the fitted sigmoid.
     if sigmoid_fit_max_slope_ind != 0:
         TRR_slope, TRR_intercept, *_ = linregress(fit_x[sigmoid_fit_max_slope_ind-1:sigmoid_fit_max_slope_ind+1],
                                                   fit_y[sigmoid_fit_max_slope_ind-1:sigmoid_fit_max_slope_ind+1])
     else:
-        # Account for if the sample undergoes partial cycling.
-        # The only difference from the code above is the indexing
-        # within fit_x and fit_y (in the below code).
+        # accounts for edge case where steepest point of fitted sigmoid is at
+        # the left-most index (which occurs during partial cycling), preventing
+        # code from raising an error.
         TRR_slope, TRR_intercept, *_ = linregress(fit_x[sigmoid_fit_max_slope_ind:sigmoid_fit_max_slope_ind+1],
                                                   fit_y[sigmoid_fit_max_slope_ind:sigmoid_fit_max_slope_ind+1])
         

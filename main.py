@@ -12,8 +12,8 @@ Author and programmer: Matthew Kuner
                 matthewkuner@yahoo.com
         
 Main paper: Matthew C. Kuner, Anargyros A. Karakalas, and Dimitris C. Lagoudas
-            "Automated Analysis of Shape Memory Alloy Thermal Cycling Data
-            under Constant Stress: Methodology and Open-Source Software",
+            "ASMADA – A Tool for Automatic Analysis of Shape Memory Alloy 
+            Thermal Cycling Data under Constant Stress",
             !!!
             [JOURNAL NAME] (YEAR),
             DOI: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
@@ -84,7 +84,7 @@ config.read('ASMADA_config.ini')
 path_to_code = Path.cwd()
 config.set('paths', 'path_to_code', str(path_to_code))
 
-using_tool_in_application_form = False    #!!!!!
+using_tool_in_application_form = True    #!!!!!
 if using_tool_in_application_form:
     path_to_parent_dir = Path.cwd().parent
 else:

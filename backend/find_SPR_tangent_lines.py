@@ -7,13 +7,13 @@ from backend.find_nearest import find_nearest
 
 def find_SPR_tangent_lines(temps, strain, left_extrema, right_extrema, TRR_slope, TRR_intercept, min_temp, max_temp):
     """
-    Finds the left and right tangent lines for the single-phase regions of
-    a cycle branch.
+    Finds the left and right tangent lines for the single-phase regions (SPRs)
+    of a cycle branch.
     """                
     
     def find_left_SPR_tangent(temps, strain, TRR_slope, TRR_intercept, left_extrema, min_temp):
         """
-        Finds tangent line for the left single-phase region of the
+        Finds tangent line for the *left* single-phase region (SPR) of the
         cycle branch.
         
         Uses the intersection of the transformation response region
@@ -50,7 +50,7 @@ def find_SPR_tangent_lines(temps, strain, left_extrema, right_extrema, TRR_slope
     
     def find_right_SPR_tangent(temps, strain, TRR_slope, TRR_intercept, right_extrema, max_temp):
         """
-        Finds tangent line for the right single-phase region of the
+        Finds tangent line for the *right* single-phase region (SPR) of the
         cycle branch.
         
         Uses the intersection of the transformation response region

@@ -3,8 +3,8 @@
 block_cipher = None
 
 
-a = Analysis(['main_4_2_21.py'],
-             pathex=['C:\\Users\\Matthew Kuner\\Documents\\Python Scripts\\Splitting Python into multiple files'],
+a = Analysis(['main.py'],
+             pathex=['C:\\Users\\Matthew Kuner\\Documents\\ASMADA'],
              binaries=[],
              datas=[],
              hiddenimports=[],
@@ -45,12 +45,12 @@ exe = EXE(pyz,
           a.scripts,
           [],
           exclude_binaries=True,
-          name='main_4_2_21',
+          name='main',
           debug=False,
           bootloader_ignore_signals=False,
           strip=False,
           upx=True,
-          console=False , icon='TAM-LogoBox.ico')
+          console=True , icon='TAM-LogoBox.ico')
 coll = COLLECT(exe,
                a.binaries,
                a.zipfiles,
@@ -58,4 +58,4 @@ coll = COLLECT(exe,
                strip=False,
                upx=True,
                upx_exclude=[],
-               name='main_4_2_21')
+               name='main')

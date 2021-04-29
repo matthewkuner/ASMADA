@@ -101,6 +101,7 @@ class pre_processing_class:
                                                             dtype=int))
 
 
+
         # Concatenate cycle dataframe with df_raw_data.
         df_raw_data.insert(0,'cycle', cycle_numbers_to_append)
         # Drop all rows with all NaN values.

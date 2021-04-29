@@ -7,7 +7,7 @@ class read_file_class:
 
     def read_file(self, GUI_inputs):
         """
-        Reads the user's file according to four user inputs:
+        Reads the user's file according to four user inputs below:
             1) the selected filepath;
             2) the number of header rows to skip;
             3) the column number for the temperature data; and
