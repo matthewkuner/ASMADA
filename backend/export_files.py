@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
 from pathlib import Path
-from configparser import ConfigParser
 import numpy as np
 import pandas as pd
 import matplotlib.animation as animation
@@ -51,13 +50,7 @@ class export_files_class:
         None.
         """
         
-        config = ConfigParser()
-        config.read('ASMADA_config.ini')
-        filepath = Path(config['paths']['filepath'])
-        path_to_code = config['paths']['path_to_code']
-        path_to_parent_dir = Path(config['paths']['path_to_parent_dir'])
-        path_to_Exported_Files_folder = Path(config['paths']['path_to_Exported_Files_folder'])
-        os.chdir(path_to_Exported_Files_folder)
+        os.chdir(self.path_to_Exported_Files_folder)
         
 
         # Write progress update to GUI.
@@ -72,14 +65,14 @@ class export_files_class:
         # analyzed.
         else:
             export_file_name_prefix = GUI_inputs.export_file_name.values[0]
-            export_file_name_prefix = filepath.stem
+            export_file_name_prefix = self.filepath.stem
 
         
         # Create subfolder within 'Exported_Files' to save the exported
         # files for the current run. This folder has the date/time
         # included for user reference.
         subfolder_name = export_file_name_prefix + datetime.now().strftime('(%Y%b%d-%H%M)')
-        path_to_export_subfolder = path_to_Exported_Files_folder / subfolder_name
+        path_to_export_subfolder = self.path_to_Exported_Files_folder / subfolder_name
         
         # If code is ran two times in the same minute, add "_n" to the end
         # of the new folder's name, where n is incremented until a unique
@@ -88,7 +81,7 @@ class export_files_class:
             n = 2
             while Path.is_dir(path_to_export_subfolder):
                 # Re-make path for new subfolder.
-                path_to_export_subfolder = path_to_Exported_Files_folder / (subfolder_name + '_' + str(n))
+                path_to_export_subfolder = self.path_to_Exported_Files_folder / (subfolder_name + '_' + str(n))
                 n = n+1
         
         # Create subfolder, then changes directory to this new subfolder.
@@ -109,7 +102,7 @@ class export_files_class:
             export_as_excel_workbook = True
 
         # Create notes to include at the top of all exported files.
-        file_analyzed_string = 'Name of file analyzed: ' + filepath.name
+        file_analyzed_string = 'Name of file analyzed: ' + self.filepath.name
         now = datetime.now()
         date_time_string = 'Date and time of analysis: ' + now.strftime('%Y-%b-%d %H:%M:%S')
         comments_to_append = file_analyzed_string + '\n' + date_time_string + '\n\n'
@@ -176,4 +169,4 @@ class export_files_class:
 
         # Change the current working directory back to the original folder 
         # containing the Python code.
-        os.chdir(path_to_code)
+        os.chdir(self.path_to_code)

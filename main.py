@@ -68,35 +68,8 @@ ASMADA_folder/
 """
 
 import sys
-from pathlib import Path
-from configparser import ConfigParser
 from PyQt5 import QtWidgets
 from gui import gui_main
-
-
-
-# updates ASMADA_config.ini file, which is used to keep track of the paths to
-# key working directories
-
-config = ConfigParser()
-config.read('ASMADA_config.ini')
-
-path_to_code = Path.cwd()
-config.set('paths', 'path_to_code', str(path_to_code))
-
-using_tool_in_application_form = True    #!!!!!
-if using_tool_in_application_form:
-    path_to_parent_dir = Path.cwd().parent
-else:
-    path_to_parent_dir = Path.cwd()
-config.set('paths', 'path_to_parent_dir', str(path_to_parent_dir))
-
-path_to_Exported_Files_folder = path_to_parent_dir / "Exported_Files"
-config.set('paths', 'path_to_Exported_Files_folder', str(path_to_Exported_Files_folder))
-
-with open('ASMADA_config.ini', 'w') as configfile:
-    config.write(configfile)
-
 
 
 if __name__ == "__main__":

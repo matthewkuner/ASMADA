@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-from pathlib import Path
-from configparser import ConfigParser
 import pandas as pd
 
 class read_file_class:
@@ -25,10 +23,6 @@ class read_file_class:
             Contains raw temperature and strain data from the file.
         """
 
-        config = ConfigParser()
-        config.read('ASMADA_config.ini')
-        filepath = Path(config['paths']['filepath'])
-
         # Write progress update to GUI.
         self.notifyProgress.emit('reading raw data')    
 
@@ -44,7 +38,7 @@ class read_file_class:
             raw_data_col_names = ['strain', 'temp']
 
         # Read in the full file using the user's inputs.
-        df_raw_data = pd.read_csv(filepath,
+        df_raw_data = pd.read_csv(self.filepath,
                                   sep=None,
                                   header=None,
                                   skiprows=skip_rows,

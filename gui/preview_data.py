@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-from pathlib import Path
-from configparser import ConfigParser
 import pandas as pd
 from PyQt5 import QtWidgets, QtGui
 
@@ -17,11 +15,6 @@ class preview_data_class:
 
         self.reset_error_messages_command()
 
-        config = ConfigParser()
-        config.read('ASMADA_config.ini')
-        filepath = config['paths']['filepath']
-        filepath = Path(filepath)
-
         try:
             # Extract user inputs regarding how to read the selected file.
             skip_rows = self.skip_rows.value()
@@ -29,7 +22,7 @@ class preview_data_class:
             strain_data_col = self.strain_col.value() - 1
 
             # Read in the first 500 rows of the selected file.
-            df_raw_data = pd.read_csv(filepath,
+            df_raw_data = pd.read_csv(self.filepath,
                                       sep=None,
                                       header=None,
                                       skiprows=skip_rows,
@@ -100,11 +93,11 @@ class preview_data_class:
         except Exception as e:
             # If error was raised, assign appropriate error to display.
             invalid_input_error_message = ''
-            if filepath == '.':
+            if str(self.filepath) == '.':
                 invalid_input_error_message = invalid_input_error_message + '• No file selected for analysis.\n'
                 self.open_file_button_error.setText(' *')
                 self.display_file_name_label_error.setText(' *')
-            if str(e) == 'column number inputted exceeds number of columns in file':
+            elif str(e) == 'column number inputted exceeds number of columns in file':
                 invalid_input_error_message = '• Column number inputted exceeds number of columns in file.'
             else:
                 invalid_input_error_message = '• Unknown error'

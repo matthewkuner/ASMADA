@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-import os
 from pathlib import Path
-from configparser import ConfigParser
 from pathvalidate import is_valid_filename
 import pandas as pd
 from PyQt5 import QtWidgets
@@ -29,12 +27,6 @@ class run_analysis_class:
                 the analysis is running.
         """
         
-        # extract paths
-        config = ConfigParser()
-        config.read('ASMADA_config.ini')
-        filepath = Path(config['paths']['filepath'])
-        path_to_Exported_Files_folder = Path(config['paths']['path_to_Exported_Files_folder'])
-        
         # Catch if column number input errors are present. This must be done
         # here, as errors are reset below.
         temp_col_error = self.temp_col_error.text()
@@ -50,13 +42,13 @@ class run_analysis_class:
         # Check whether the 'Exported_Files' folder (which is used to save all 
         # files exported by this tool) exists or not. If it does not exist, it 
         # will be created and this will be displayed for the user.
-        Exported_Files_folder_exists = Path.is_dir(path_to_Exported_Files_folder)
+        Exported_Files_folder_exists = Path.is_dir(self.path_to_Exported_Files_folder)
         
         # If the 'Exported_Files' folder had to be created, emphasize this to
         # the user and do *not* run the analysis.
         if Exported_Files_folder_exists == False: 
             # Attempt to make 'Exported_Files' folder if one does not exist
-            Path.mkdir(path_to_Exported_Files_folder)
+            Path.mkdir(self.path_to_Exported_Files_folder)
             # Write message to GUI and creates pop-up
             self.error_message_label.setText("* A new folder named 'Exported_Files' has been created in the same location as this analysis tool. All files exported using this tool will be saved in this folder.")
             QtWidgets.QMessageBox.information(self,
@@ -70,7 +62,7 @@ class run_analysis_class:
         # Check for user input errors. If no errors are found, run the analysis.
         if Exported_Files_folder_exists == True:
             # Check if a file has been selected for analysis
-            if str(filepath) == '.':
+            if str(self.filepath) == '.':
                 invalid_input_error_message += '• No file selected for analysis.\n'
                 self.open_file_button_error.setText(' *')
                 self.display_file_name_label_error.setText(' *')
@@ -86,10 +78,10 @@ class run_analysis_class:
             # two error messages (which were saved at the very start of this 
             # function) are used.
             else:
-                if temp_col_error == ' *' and str(filepath) != '.':
+                if temp_col_error == ' *' and str(self.filepath) != '.':
                     invalid_input_error_message +=  '• Column number for temperature data exceeds number of (identified) columns in the chosen file.\n'
                     self.temp_col_error.setText(' *')
-                if strain_col_error == ' *' and str(filepath) != '.':
+                if strain_col_error == ' *' and str(self.filepath) != '.':
                     invalid_input_error_message +=  '• Column number for strain data exceeds number of (identified) columns in the chosen file.\n'
                     self.strain_col_error.setText(' *')
     
@@ -145,9 +137,14 @@ class run_analysis_class:
                                           )
                 
     
+    
                 # Create a workerThread, which receives the above dataframe of
                 # user inputs and runs the analysis in parallel with GUI.
-                self.workerThread = worker_main.WorkerThread(GUI_inputs=GUI_inputs)
+                self.workerThread = worker_main.WorkerThread(GUI_inputs=GUI_inputs,
+                                                             path_to_code=self.path_to_code,
+                                                             path_to_parent_dir=self.path_to_parent_dir,
+                                                             path_to_Exported_Files_folder=self.path_to_Exported_Files_folder,
+                                                             filepath=self.filepath)
                 self.workerThread.notifyProgress.connect(self.update_progress_command)
                 self.workerThread.notifyError.connect(self.error_message_command)
                 self.workerThread.finished.connect(self.terminate_worker_command)

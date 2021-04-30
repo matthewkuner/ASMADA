@@ -11,6 +11,7 @@ import gui.error_message
 import gui.reset_error_messages
 import gui.reset_inputs
 import gui.terminate_worker
+from pathlib import Path
 
 # MainDialog manages all functions of Graphical User Interface (GUI).
 class MainDialog(QtWidgets.QMainWindow, 
@@ -72,6 +73,17 @@ class MainDialog(QtWidgets.QMainWindow,
         self.stop_analysis.clicked.connect(self.terminate_worker_command)
         self.stop_analysis.clicked.connect(self.analysis_terminated_message_command)
         self.stop_analysis.setEnabled(False)
+        
+        # Saves paths to important locations
+        self.path_to_code = Path.cwd()
+        using_tool_in_application_form = True    #!!!!!
+        if using_tool_in_application_form:
+            self.path_to_parent_dir = Path.cwd().parent
+        else:
+            self.path_to_parent_dir = Path.cwd()
+        self.path_to_Exported_Files_folder = self.path_to_parent_dir / "Exported_Files"
+
+
 
 
     def closeEvent(self, event):
