@@ -54,9 +54,6 @@ class WorkerThread(QtCore.QThread,
         start = time.perf_counter()            
 
 
-        GUI_inputs = self.GUI_inputs
-
-
         # Initialize list to capture error messages.
         error = []
         
@@ -67,7 +64,7 @@ class WorkerThread(QtCore.QThread,
         # Read file.
         if len(error) == 0:
             try:
-                df_raw_data = self.read_file(GUI_inputs)
+                df_raw_data = self.read_file()
             except Exception as e:     # Write error message to GUI.
                 self.notifyError.emit('error reading file selected for analysis')
                 error.append(e)
@@ -75,7 +72,7 @@ class WorkerThread(QtCore.QThread,
         # Pre-processing.
         if len(error) == 0:
             try:
-                df_raw_data, cycles_to_analyze, tot_num_cyc = self.pre_processing(GUI_inputs, df_raw_data)
+                df_raw_data, cycles_to_analyze, tot_num_cyc = self.pre_processing(df_raw_data)
             except Exception as e:     # Write error message to GUI.
                 self.notifyError.emit('error pre-procesing')
                 error.append(e)
@@ -83,7 +80,7 @@ class WorkerThread(QtCore.QThread,
         # Analyze data.
         if len(error) == 0:
             try:
-                df_material_parameters, df_smoothed_data, im_animation = self.analyze_data(GUI_inputs, df_raw_data, tot_num_cyc, cycles_to_analyze)
+                df_material_parameters, df_smoothed_data, im_animation = self.analyze_data(df_raw_data, tot_num_cyc, cycles_to_analyze)
             except Exception as e:     # Write error message to GUI.
                 self.notifyError.emit('error analyzing data')
                 error.append(e)
@@ -91,7 +88,7 @@ class WorkerThread(QtCore.QThread,
         # Make plots.
         if len(error) == 0:
             try:
-                fig_all_cycle, fig_temps_separate, fig_temps_all, fig_strains_separate, fig_strains_all, fig_actuation_transform_strain, fig_hysteresis, fig_UCT_LCT, fig_coef_thermal_expan = self.make_plots(GUI_inputs, df_material_parameters, df_smoothed_data, cycles_to_analyze, tot_num_cyc)
+                fig_all_cycle, fig_temps_separate, fig_temps_all, fig_strains_separate, fig_strains_all, fig_actuation_transform_strain, fig_hysteresis, fig_UCT_LCT, fig_coef_thermal_expan = self.make_plots(df_material_parameters, df_smoothed_data, cycles_to_analyze, tot_num_cyc)
             except Exception as e:     # Write error message to GUI.
                 self.notifyError.emit('error plotting evolution of material properties')
                 error.append(e)
@@ -99,7 +96,7 @@ class WorkerThread(QtCore.QThread,
         # Export files.
         if len(error) == 0:
             try:
-                self.export_files(GUI_inputs, cycles_to_analyze, df_material_parameters, im_animation, fig_all_cycle, fig_temps_separate, fig_temps_all, fig_strains_separate, fig_strains_all, fig_actuation_transform_strain, fig_hysteresis, fig_UCT_LCT, fig_coef_thermal_expan)
+                self.export_files(cycles_to_analyze, df_material_parameters, im_animation, fig_all_cycle, fig_temps_separate, fig_temps_all, fig_strains_separate, fig_strains_all, fig_actuation_transform_strain, fig_hysteresis, fig_UCT_LCT, fig_coef_thermal_expan)
             except Exception as e:     # Write error message to GUI.
                 self.notifyError.emit('error exporting files')
                 error.append(e)

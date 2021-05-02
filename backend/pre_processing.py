@@ -4,7 +4,7 @@ from scipy.signal import find_peaks
 
 class pre_processing_class:
     
-    def pre_processing(self, GUI_inputs, df_raw_data):
+    def pre_processing(self, df_raw_data):
         """
         Performs the following functions:
             1)  Identify cycles in the file using the 'find_peaks' method
@@ -15,7 +15,7 @@ class pre_processing_class:
 
         Parameters
         ----------
-        GUI_inputs : pandas DataFrame
+        self.GUI_inputs : pandas DataFrame
             Contains all user inputs.
         df_raw_data : pandas DataFrame
             contains raw temperature and strain data (cycles are not yet
@@ -116,7 +116,7 @@ class pre_processing_class:
 
         # Create a list of cycles to analyze, dependent on both the user 
         # input and the total number of cycles in the file.
-        if GUI_inputs.cycles_to_analyze.values[0] == 'all cycles':
+        if self.GUI_inputs.cycles_to_analyze.values[0] == 'all cycles':
             # If file contains only one cycle, analyze that single cycle.
             if tot_num_cyc == 1:
                 cycles_to_analyze = [0]
@@ -129,8 +129,8 @@ class pre_processing_class:
             else:
                 cycles_to_analyze = [*range(1,tot_num_cyc)]
 
-        elif GUI_inputs.cycles_to_analyze.values[0] == '[custom]':
-            custom_cycles_to_analyze = GUI_inputs.custom_cycles_to_analyze.values[0]
+        elif self.GUI_inputs.cycles_to_analyze.values[0] == '[custom]':
+            custom_cycles_to_analyze = self.GUI_inputs.custom_cycles_to_analyze.values[0]
             # If a custom list of cycles are specified, all spaces are
             # removed from the list. Then, the list is split using commas
             # and each item is interpreted.

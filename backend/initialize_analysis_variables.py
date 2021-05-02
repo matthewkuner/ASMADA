@@ -3,21 +3,21 @@ import numpy as np
 import pandas as pd
 
 
-def initialize_analysis_variables(GUI_inputs):
+def initialize_analysis_variables(self):
     # Initialize list to capture transformation temps/strains for each 
     # cycle.
     # First, determine the units that should be associated with each
     # outputted property/parameter.
-    if GUI_inputs.temp_unit.values[0] == '[°C]':
+    if self.GUI_inputs.temp_unit.values[0] == '[°C]':
         temp_unit = ' ' + '[degC]'
-    elif GUI_inputs.temp_unit.values[0] == '[K]':
+    elif self.GUI_inputs.temp_unit.values[0] == '[K]':
         temp_unit = ' ' + '[K]'
-    elif GUI_inputs.temp_unit.values[0] == '[°F]':
+    elif self.GUI_inputs.temp_unit.values[0] == '[°F]':
         temp_unit = ' ' + '[degF]'
         
-    if GUI_inputs.strain_unit.values[0] == '[%]':
+    if self.GUI_inputs.strain_unit.values[0] == '[%]':
         strain_unit = ' ' + '[%]'
-    elif GUI_inputs.strain_unit.values[0] == '[fraction]':
+    elif self.GUI_inputs.strain_unit.values[0] == '[fraction]':
         strain_unit = ''
 
     CTE_unit = ' [1/' + temp_unit[2:-1] + ']'

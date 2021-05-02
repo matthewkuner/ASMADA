@@ -23,7 +23,7 @@ plt.rcParams['agg.path.chunksize'] = 10000
 # WorkerThread manages all aspects of analysis.
 class make_plots_class:
 
-    def make_plots(self, GUI_inputs, df_material_parameters, df_smoothed_data, cycles_to_analyze, tot_num_cyc):
+    def make_plots(self, df_material_parameters, df_smoothed_data, cycles_to_analyze, tot_num_cyc):
         """
         Creates plot of all cycles together, alongside many plots for most 
         of the material properties calculated.
@@ -31,7 +31,7 @@ class make_plots_class:
 
         Parameters
         ----------
-        GUI_inputs : pandas DataFrame
+        self.GUI_inputs : pandas DataFrame
             Contains all user inputs.
         df_material_parameters : pandas DataFrame
             Contains all material parameters calculated in the
@@ -68,7 +68,7 @@ class make_plots_class:
         self.notifyProgress.emit('making plots')
 
 
-        axis_label_kwargs, plot_title_kwargs, temp_axis_label, strain_axis_label, CTE_axis_label, hyst_area_axis_label = make_plot_labels(GUI_inputs)
+        axis_label_kwargs, plot_title_kwargs, temp_axis_label, strain_axis_label, CTE_axis_label, hyst_area_axis_label = make_plot_labels(self)
 
 
         marker_kwargs, legend_marker_kwargs = make_plot_markers(cycles_to_analyze)
@@ -152,16 +152,16 @@ class make_plots_class:
         # Prepare units to use to index columns from 
         # df_material_parameters (this is slightly different from 
         # determining units for plot axis labels).
-        if GUI_inputs.temp_unit.values[0] == '[°C]':
+        if self.GUI_inputs.temp_unit.values[0] == '[°C]':
             temp_unit = ' ' + '[degC]'
-        elif GUI_inputs.temp_unit.values[0] == '[K]':
+        elif self.GUI_inputs.temp_unit.values[0] == '[K]':
             temp_unit = ' ' + '[K]'
-        elif GUI_inputs.temp_unit.values[0] == '[°F]':
+        elif self.GUI_inputs.temp_unit.values[0] == '[°F]':
             temp_unit = ' ' + '[degF]'
 
-        if GUI_inputs.strain_unit.values[0] == '[%]':
+        if self.GUI_inputs.strain_unit.values[0] == '[%]':
             strain_unit = ' ' + '[%]'
-        elif GUI_inputs.strain_unit.values[0] == '[fraction]':
+        elif self.GUI_inputs.strain_unit.values[0] == '[fraction]':
             strain_unit = ''
 
         CTE_unit = ' [1/' + temp_unit[2:-1] + ']'

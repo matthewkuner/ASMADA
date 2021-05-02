@@ -2,9 +2,6 @@
 import pandas as pd
 from PyQt5 import QtWidgets, QtGui
 
-
-
-
 # MainDialog manages all functions of Graphical User Interface (GUI).
 class preview_data_class:
 

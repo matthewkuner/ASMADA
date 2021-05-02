@@ -31,7 +31,7 @@ plt.rcParams['agg.path.chunksize'] = 10000
 
 class analyze_data_class:
 
-    def analyze_data(self, GUI_inputs, df_raw_data, tot_num_cyc, cycles_to_analyze):
+    def analyze_data(self, df_raw_data, tot_num_cyc, cycles_to_analyze):
         
         """
         Determines material properties for all cycles specified by the user.
@@ -88,7 +88,7 @@ class analyze_data_class:
 
         Parameters
         ----------
-        GUI_inputs : pandas DataFrame
+        self.GUI_inputs : pandas DataFrame
             Contains all user inputs.
         df_raw_data : pandas DataFrame
             contains raw temperature and strain data, alongside identified
@@ -119,10 +119,9 @@ class analyze_data_class:
         self.notifyProgress.emit('analyzing cycle ' + str(0) + ' / ' + str(tot_num_cyc))
 
         # Initialize variables to create animation of tangent line fitting.
-        fig_anim, ax_anim, animation_frame_stack, frame_capture_freq = initialize_animation(cycles_to_analyze, 
-                                                                                            GUI_inputs)
+        fig_anim, ax_anim, animation_frame_stack, frame_capture_freq = initialize_animation(self, cycles_to_analyze)
 
-        mat_param_column_names, dict_material_parameters, df_smoothed_data, cooling_sigmoid_guess, heating_sigmoid_guess, cycles_that_failed = initialize_analysis_variables(GUI_inputs)
+        mat_param_column_names, dict_material_parameters, df_smoothed_data, cooling_sigmoid_guess, heating_sigmoid_guess, cycles_that_failed = initialize_analysis_variables(self)
         
         
         
@@ -376,7 +375,7 @@ class analyze_data_class:
                 mart_coef_thermal_expan = heat_left_SPR_slope
                 # Divide by 100 if strain data is in [%] (as CTE is 
                 # universally reported with no associated strain unit).
-                if GUI_inputs.strain_unit.values[0] == '[%]':
+                if self.GUI_inputs.strain_unit.values[0] == '[%]':
                     aust_coef_thermal_expan /= 100
                     mart_coef_thermal_expan /= 100
 
@@ -395,7 +394,7 @@ class analyze_data_class:
                 # is multiplied by 1.8, as 1 Celsius unit is equal to
                 # 1.8 Fahrenheit units (note this is distinct from a direct 
                 # converion from °C to °F).
-                if GUI_inputs.temp_unit.values[0] == '[°F]':
+                if self.GUI_inputs.temp_unit.values[0] == '[°F]':
                     valid_CTE = 1.8 * valid_CTE
 
                 if ~(LCT < M_s_temp < UCT) or ~(valid_min_strain < M_s_strain < valid_max_strain) or (abs(M_s_strain) > abs(M_f_strain) and abs(M_s_strain) > abs(A_s_strain)):
@@ -514,7 +513,7 @@ class analyze_data_class:
                 # conversion to Joules/g, which would be accomplished by
                 # multiplying the hysteresis area by the specific heat 
                 # capacity of the material).
-                if GUI_inputs.strain_unit.values[0] == '[%]':
+                if self.GUI_inputs.strain_unit.values[0] == '[%]':
                     hysteresis_area /= 100
                
 

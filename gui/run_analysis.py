@@ -5,9 +5,6 @@ import pandas as pd
 from PyQt5 import QtWidgets
 from backend import worker_main
 
-
-
-
 # MainDialog manages all functions of Graphical User Interface (GUI).
 class run_analysis_class:
 

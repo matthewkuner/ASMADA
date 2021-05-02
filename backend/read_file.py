@@ -3,7 +3,7 @@ import pandas as pd
 
 class read_file_class:
 
-    def read_file(self, GUI_inputs):
+    def read_file(self):
         """
         Reads the user's file according to four user inputs below:
             1) the selected filepath;
@@ -14,8 +14,10 @@ class read_file_class:
 
         Parameters
         ----------
-        GUI_inputs : pandas DataFrame
+        self.GUI_inputs : pandas DataFrame
             Contains all user inputs.
+        self.filepath : Pathlib object
+            Contains path to user-selected file.
 
         Returns
         -------
@@ -27,9 +29,9 @@ class read_file_class:
         self.notifyProgress.emit('reading raw data')    
 
         # Extract user inputs defining how to read file.
-        skip_rows = GUI_inputs.skip_rows.values[0]
-        temp_data_col = GUI_inputs.temp_col.values[0] - 1
-        strain_data_col = GUI_inputs.strain_col.values[0] - 1
+        skip_rows = self.GUI_inputs.skip_rows.values[0]
+        temp_data_col = self.GUI_inputs.temp_col.values[0] - 1
+        strain_data_col = self.GUI_inputs.strain_col.values[0] - 1
 
         # Assign temperature/strain column names appropriately.
         if temp_data_col < strain_data_col:

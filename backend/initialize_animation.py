@@ -14,7 +14,7 @@ plt.rcParams['grid.linestyle'] = '--'
 plt.rcParams['agg.path.chunksize'] = 10000
 
 
-def initialize_animation(cycles_to_analyze, GUI_inputs):
+def initialize_animation(self, cycles_to_analyze):
     # Initialize figure (fig_anim) and frame stack 
     # (animation_frame_stack) used for the animation of tangent
     # line fitting.
@@ -23,17 +23,17 @@ def initialize_animation(cycles_to_analyze, GUI_inputs):
     ax_anim.cla()
     
     temp_axis_label = 'Temperature'
-    if GUI_inputs.temp_unit.values[0] == '[°C]':
+    if self.GUI_inputs.temp_unit.values[0] == '[°C]':
         temp_axis_label = temp_axis_label + ' ' + '[\u00B0C]'
-    elif GUI_inputs.temp_unit.values[0] == '[K]':
+    elif self.GUI_inputs.temp_unit.values[0] == '[K]':
         temp_axis_label = temp_axis_label + ' ' + '[K]'
-    elif GUI_inputs.temp_unit.values[0] == '[°F]':
+    elif self.GUI_inputs.temp_unit.values[0] == '[°F]':
         temp_axis_label = temp_axis_label + ' ' + '[\u00B0F]'
         
     strain_axis_label = 'Strain'
-    if GUI_inputs.strain_unit.values[0] == '[%]':
+    if self.GUI_inputs.strain_unit.values[0] == '[%]':
         strain_axis_label = strain_axis_label + ' ' + '[%]'
-    elif GUI_inputs.strain_unit.values[0] == '[fraction]':
+    elif self.GUI_inputs.strain_unit.values[0] == '[fraction]':
         pass
         
     # Label axes of figure
@@ -50,7 +50,7 @@ def initialize_animation(cycles_to_analyze, GUI_inputs):
     # cycles, depending on the number of cycles being analyzed;
     # this is to prevent outputted animations from being 
     # unreasonably large.
-    if GUI_inputs.cycles_to_analyze.values[0] == '[custom]':
+    if self.GUI_inputs.cycles_to_analyze.values[0] == '[custom]':
         if len(cycles_to_analyze) <= 251:
             frame_capture_freq = 1
         else:
@@ -58,7 +58,7 @@ def initialize_animation(cycles_to_analyze, GUI_inputs):
     # If the user specified for all cycles to be analyzed, frames
     # will be captured at a regular interval that is chosen
     # based on the total number of cycles being analyzed.
-    elif GUI_inputs.cycles_to_analyze.values[0] == 'all cycles':
+    elif self.GUI_inputs.cycles_to_analyze.values[0] == 'all cycles':
         if len(cycles_to_analyze) < 200:
             frame_capture_freq = 10
         elif len(cycles_to_analyze) < 1000:

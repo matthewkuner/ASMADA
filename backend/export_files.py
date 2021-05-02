@@ -9,15 +9,21 @@ from datetime import datetime
 # WorkerThread manages all aspects of analysis.
 class export_files_class:
 
-    def export_files(self, GUI_inputs, cycles_to_analyze, df_material_parameters, im_animation, fig_all_cycle, fig_temps_separate, fig_temps_all, fig_strains_separate, fig_strains_all, fig_actuation_transform_strain, fig_hysteresis, fig_UCT_LCT, fig_coef_thermal_expan):
+    def export_files(self, cycles_to_analyze, df_material_parameters, im_animation, fig_all_cycle, fig_temps_separate, fig_temps_all, fig_strains_separate, fig_strains_all, fig_actuation_transform_strain, fig_hysteresis, fig_UCT_LCT, fig_coef_thermal_expan):
         """
         Exports material properties and plots created in previous methods.
 
 
         Parameters
         ----------
-        GUI_inputs : pandas DataFrame
+        self.GUI_inputs : pandas DataFrame
             Contains all user inputs.
+        self.path_to_Exported_Files_folder : Pathlib object
+            Contains path to "Exported Files" folder.
+        self.filepath : Pathlib object
+            Contains path to user-selected file.
+        self.path_to_code : Pathlib object
+            Contains path to "main.py" file.
         cycles_to_analyze : list
             Used to determine whether or not to output animation video.
         df_material_parameters : pandas DataFrame
@@ -59,12 +65,12 @@ class export_files_class:
 
         # Create file name prefix for all exported files. 
         # If user inputted a custom file name for exported files, use it.
-        if GUI_inputs.export_file_name.values[0]!='':
-            export_file_name_prefix = GUI_inputs.export_file_name.values[0]
+        if self.GUI_inputs.export_file_name.values[0]!='':
+            export_file_name_prefix = self.GUI_inputs.export_file_name.values[0]
         # Otherwise, make the file name prefix match the file being 
         # analyzed.
         else:
-            export_file_name_prefix = GUI_inputs.export_file_name.values[0]
+            export_file_name_prefix = self.GUI_inputs.export_file_name.values[0]
             export_file_name_prefix = self.filepath.stem
 
         
@@ -94,11 +100,11 @@ class export_files_class:
         export_as_csv = False
         export_as_excel_workbook = False
         export_as_txt = False
-        if GUI_inputs.export_file_type.values[0] == '.csv':
+        if self.GUI_inputs.export_file_type.values[0] == '.csv':
             export_as_csv = True
-        elif GUI_inputs.export_file_type.values[0] == '.txt':
+        elif self.GUI_inputs.export_file_type.values[0] == '.txt':
             export_as_txt = True
-        elif GUI_inputs.export_file_type.values[0] == '.xlsx':
+        elif self.GUI_inputs.export_file_type.values[0] == '.xlsx':
             export_as_excel_workbook = True
 
         # Create notes to include at the top of all exported files.

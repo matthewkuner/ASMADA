@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 
-def make_plot_labels(GUI_inputs):
+def make_plot_labels(self):
     # Create reusable parameters for axis label and title kwargs. 
     axis_label_kwargs = dict(fontweight = 'semibold', fontsize = 'large')
     plot_title_kwargs = dict(fontsize = 'large')
@@ -9,17 +9,17 @@ def make_plot_labels(GUI_inputs):
 
     # Create axis label strings.
     # Determine appropriate temperature units to use.
-    if GUI_inputs.temp_unit.values[0] == '[°C]':
+    if self.GUI_inputs.temp_unit.values[0] == '[°C]':
         temp_unit_label = ' ' + '[\u00B0C]'
-    elif GUI_inputs.temp_unit.values[0] == '[K]':
+    elif self.GUI_inputs.temp_unit.values[0] == '[K]':
         temp_unit_label = ' ' + '[K]'
-    elif GUI_inputs.temp_unit.values[0] == '[°F]':
+    elif self.GUI_inputs.temp_unit.values[0] == '[°F]':
         temp_unit_label = ' ' + '[\u00B0F]'
         
     # Determine appropriate strain units to use.
-    if GUI_inputs.strain_unit.values[0] == '[%]':
+    if self.GUI_inputs.strain_unit.values[0] == '[%]':
         strain_unit_label = ' ' + '[%]'
-    elif GUI_inputs.strain_unit.values[0] == '[fraction]':
+    elif self.GUI_inputs.strain_unit.values[0] == '[fraction]':
         strain_unit_label = ''
         
     # Combine string with appropriate units.
