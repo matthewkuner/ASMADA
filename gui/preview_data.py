@@ -90,11 +90,7 @@ class preview_data_class:
         except Exception as e:
             # If error was raised, assign appropriate error to display.
             invalid_input_error_message = ''
-            if str(self.filepath) == '.':
-                invalid_input_error_message = invalid_input_error_message + '• No file selected for analysis.\n'
-                self.open_file_button_error.setText(' *')
-                self.display_file_name_label_error.setText(' *')
-            elif str(e) == 'column number inputted exceeds number of columns in file':
+            if str(e) == 'column number inputted exceeds number of columns in file':
                 invalid_input_error_message = '• Column number inputted exceeds number of columns in file.'
             else:
                 invalid_input_error_message = '• Unknown error'

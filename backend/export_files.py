@@ -3,6 +3,7 @@ import os
 from pathlib import Path
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 from datetime import datetime
 
@@ -166,6 +167,7 @@ class export_files_class:
         # Only export if the below conditions are met, as these are
         # requirements for an animation to be created.
         if cycles_to_analyze != '[custom]' or len(cycles_to_analyze) <= 251:
+            plt.rcParams['animation.ffmpeg_path'] = self.path_to_code / "ffmpeg.exe"
             Writer = animation.writers['ffmpeg']
             writer = Writer(fps=1.5, metadata=dict(artist='Me'), bitrate=-1)
             im_animation.save(export_file_name_prefix + '_analyzed_animation_tangent_line_fitting.mp4',

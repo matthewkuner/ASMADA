@@ -1,0 +1,13 @@
+# how to convert updated GUI .ui files to .py files
+    # enter the following line into the command prompt WITHIN THE FOLDER CONTAINING THE .ui FILE:
+        # pyuic5 -x myGUIfile.ui -o myGUIfile.py
+    # current line to run:
+        # pyuic5 -x Automatic_Fatigue_Analysis_GUI_12_12_20.ui -o Automatic_Fatigue_Analysis_GUI_12_12_20.py
+
+# How to make into .exe file (or .dmg file if using a Mac):
+    # enter the following line into the command prompt WITHIN the folder containing BOTH the .py and .ui file:
+        # pyinstaller -i TAM-LogoBox.ico MKuner--Automated_Fatigue_Analysis_Tool_2-4-21.
+        # pyinstaller --noconsole -i TAM-LogoBox.ico main.py --hidden-import=configparser --onefile
+        # pyinstaller --debug all -i TAM-LogoBox.ico main.py --onefile
+        # pyinstaller --debug all -i TAM-LogoBox.ico main.py
+        # pyinstaller main.py --debug all -i TAM-LogoBox.ico
