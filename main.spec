@@ -1,5 +1,6 @@
 # -*- mode: python ; coding: utf-8 -*-
 
+
 block_cipher = None
 
 
@@ -7,7 +8,7 @@ a = Analysis(['main.py'],
              pathex=['C:\\Users\\Matthew Kuner\\Documents\\ASMADA'],
              binaries=[],
              datas=[],
-             hiddenimports=[],
+             hiddenimports=['configparser'],
              hookspath=[],
              runtime_hooks=[],
              excludes=[],
