@@ -22,7 +22,7 @@ class open_dialog_box_class:
         if Path.is_dir(Path(path_to_last_file_selected)) == True:
             open_dialog_start_path = path_to_last_file_selected
         else:
-            open_dialog_start_path = str(self.path_to_parent_dir)
+            open_dialog_start_path = str(self.path_to_code)
 
     
         # Allow only .txt or .csv files to be selected.

@@ -76,13 +76,6 @@ class MainDialog(QtWidgets.QMainWindow,
         
         # Saves paths to important locations
         self.path_to_code = Path.cwd()
-        using_tool_in_application_form = True    #!!!!!
-        if using_tool_in_application_form:
-            self.path_to_parent_dir = Path.cwd().parent
-        else:
-            self.path_to_parent_dir = Path.cwd()
-        self.path_to_Exported_Files_folder = self.path_to_parent_dir / "Exported_Files"
-
 
 
 

@@ -31,13 +31,11 @@ class WorkerThread(QtCore.QThread,
 
 
 
-    def __init__(self, GUI_inputs, path_to_code, path_to_parent_dir, path_to_Exported_Files_folder, filepath, parent=None):
+    def __init__(self, GUI_inputs, path_to_code, filepath, parent=None):
         
         super(WorkerThread, self).__init__(parent)
         self.GUI_inputs = GUI_inputs
         self.path_to_code = path_to_code
-        self.path_to_parent_dir = path_to_parent_dir
-        self.path_to_Exported_Files_folder = path_to_Exported_Files_folder
         self.filepath = filepath
 
 

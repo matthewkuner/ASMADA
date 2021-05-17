@@ -19,8 +19,6 @@ class export_files_class:
         ----------
         self.GUI_inputs : pandas DataFrame
             Contains all user inputs.
-        self.path_to_Exported_Files_folder : Pathlib object
-            Contains path to "Exported Files" folder.
         self.filepath : Pathlib object
             Contains path to user-selected file.
         self.path_to_code : Pathlib object
@@ -57,8 +55,7 @@ class export_files_class:
         None.
         """
         
-        os.chdir(self.path_to_Exported_Files_folder)
-        
+        os.chdir(self.filepath.parent)
 
         # Write progress update to GUI.
         self.notifyProgress.emit('exporting files')
@@ -75,25 +72,24 @@ class export_files_class:
             export_file_name_prefix = self.filepath.stem
 
         
-        # Create subfolder within 'Exported_Files' to save the exported
-        # files for the current run. This folder has the date/time
-        # included for user reference.
-        subfolder_name = export_file_name_prefix + datetime.now().strftime('(%Y%b%d-%H%M)')
-        path_to_export_subfolder = self.path_to_Exported_Files_folder / subfolder_name
+        # Create folder to save the exported files for the current run. This 
+        # folder has the date/time included for user reference.
+        folder_name = export_file_name_prefix + datetime.now().strftime('(%Y%b%d-%H%M)')
+        path_to_export_folder = self.filepath.parent / folder_name
         
         # If code is ran two times in the same minute, add "_n" to the end
         # of the new folder's name, where n is incremented until a unique
         # folder name is obtained.
-        if Path.is_dir(path_to_export_subfolder):
+        if Path.is_dir(path_to_export_folder):
             n = 2
-            while Path.is_dir(path_to_export_subfolder):
-                # Re-make path for new subfolder.
-                path_to_export_subfolder = self.path_to_Exported_Files_folder / (subfolder_name + '_' + str(n))
+            while Path.is_dir(path_to_export_folder):
+                # Re-make path for new folder.
+                path_to_export_folder = self.filepath.parent / (folder_name + '_' + str(n))
                 n = n+1
         
-        # Create subfolder, then changes directory to this new subfolder.
-        Path.mkdir(path_to_export_subfolder)
-        os.chdir(path_to_export_subfolder)
+        # Create folder, then changes directory to this new folder.
+        Path.mkdir(path_to_export_folder)
+        os.chdir(path_to_export_folder)
         
 
         # Check file type user desires for exported material 
