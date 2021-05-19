@@ -10,4 +10,7 @@
         # pyinstaller --noconsole -i TAM-LogoBox.ico main.py --hidden-import=configparser --onefile
         # pyinstaller --debug all -i TAM-LogoBox.ico main.py --onefile
         # pyinstaller --debug all -i TAM-LogoBox.ico main.py
-        # pyinstaller main.py --debug all -i TAM-LogoBox.ico
+        # pyinstaller main.py --debug all -i TAM-LogoBox.ico --hidden-import=configparser
+
+
+Remember to change the matplotlibrc file in the matplotlib/mpl-data folder to the 40 kB one!

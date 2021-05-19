@@ -40,8 +40,6 @@ class open_dialog_box_class:
         # Display filename on GUI.
         self.display_file_name_label.setText(file_name)
         
-        # changes back to directory containing ASMADA_config.ini
-        os.chdir(self.path_to_code)
         
         if str(self.filepath) == '.':
                 self.open_file_button_error.setText(' *')
@@ -52,4 +50,7 @@ class open_dialog_box_class:
                                            '• No file selected for analysis.\n')
         else:
             # Load a preview of the file to the preview table.
+            config.set('paths', 'path_to_last_file_selected', str(self.filepath.parent))
+            with open('ASMADA_config.ini', 'w') as configfile:
+                config.write(configfile)
             self.preview_data_command()

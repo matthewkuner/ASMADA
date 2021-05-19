@@ -12,6 +12,8 @@ import gui.reset_error_messages
 import gui.reset_inputs
 import gui.terminate_worker
 from pathlib import Path
+import sys
+import os
 
 # MainDialog manages all functions of Graphical User Interface (GUI).
 class MainDialog(QtWidgets.QMainWindow, 
@@ -74,8 +76,12 @@ class MainDialog(QtWidgets.QMainWindow,
         self.stop_analysis.clicked.connect(self.analysis_terminated_message_command)
         self.stop_analysis.setEnabled(False)
         
-        # Saves paths to important locations
-        self.path_to_code = Path.cwd()
+        # Saves path to code
+        if getattr(sys, 'frozen', False) and hasattr(sys, '_MEIPASS'):
+            self.path_to_code = Path(sys._MEIPASS)
+            os.chdir(self.path_to_code)
+        else:
+            self.path_to_code = Path.cwd()
 
 
 
