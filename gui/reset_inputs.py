@@ -22,6 +22,10 @@ class reset_inputs_class:
         self.display_file_name_label.setText('')
         self.analysis_status_progress_label_1.setText('')
         self.analysis_status_progress_label_2.setText('')
+        try:
+            del self.filepath
+        except:
+            pass
 
         # Reset table to only two columns.
         self.preview_table.setColumnCount(2)
