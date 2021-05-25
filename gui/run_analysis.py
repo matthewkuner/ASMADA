@@ -38,7 +38,12 @@ class run_analysis_class:
 
         # Check for user input errors. If no errors are found, run the analysis.
         # Check if a file has been selected for analysis
-        if str(self.filepath) == '.':
+        try:
+            if str(self.filepath) == '.':
+                invalid_input_error_message += '• No file selected for analysis.\n'
+                self.open_file_button_error.setText(' *')
+                self.display_file_name_label_error.setText(' *')
+        except:
             invalid_input_error_message += '• No file selected for analysis.\n'
             self.open_file_button_error.setText(' *')
             self.display_file_name_label_error.setText(' *')
