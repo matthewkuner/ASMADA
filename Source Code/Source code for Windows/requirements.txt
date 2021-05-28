@@ -1,0 +1,14 @@
+matplotlib==3.0.3
+numpy==1.18.5
+pandas==1.0.5
+path==13.1.0
+pathlib==1.0.1
+pathlib2==2.3.5
+pathtools==0.1.2
+pathvalidate==2.3.0
+pyinstaller==4.3
+PyQt==5.9.2
+PyQt5-sip==12.8.0
+qt==5.9.7
+QtPy==1.9.0
+scipy==1.5.0
