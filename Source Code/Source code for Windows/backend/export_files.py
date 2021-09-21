@@ -148,7 +148,7 @@ class export_files_class:
 
 
         # Export plots.
-        figure_save_settings_kwargs = dict(dpi=600, bbox_inches='tight', pad_inches=0.25)
+        figure_save_settings_kwargs = dict(dpi=300, bbox_inches='tight', pad_inches=0.25)
         fig_all_cycle.savefig(export_file_name_prefix + '_analyzed_plot_all_cycles.png', **figure_save_settings_kwargs)
         fig_temps_separate.savefig(export_file_name_prefix + '_analyzed_plot_transform_temps_separate.png', **figure_save_settings_kwargs)
         fig_temps_all.savefig(export_file_name_prefix + '_analyzed_plot_transform_temps_overlaid.png', **figure_save_settings_kwargs)

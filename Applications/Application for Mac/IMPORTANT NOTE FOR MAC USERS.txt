@@ -1,0 +1,3 @@
+The Mac application form of ASMADA does not work on all Mac OS versions. It has been successfully ran on Big Sur v.<____>, but was not able to be run on other Mac operating systems. 
+
+If the Mac application does not work for you, please consider trying the Windows version of the application--it was stable and functioning on all of the computers it was tested on. This can be done using Boot Camp, or by simply using a Windows machine you have access to. Apologies for the inconvenience.

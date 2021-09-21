@@ -83,6 +83,9 @@ class WorkerThread(QtCore.QThread,
             except Exception as e:     # Write error message to GUI.
                 self.notifyError.emit('error analyzing data')
                 error.append(e)
+        # Helpful for those who wish to edit the code.
+        finish = time.perf_counter()
+        print('Cycles analyzed per second: ' + str(len(cycles_to_analyze)/(finish-start)))
 
         # Make plots.
         if len(error) == 0:
@@ -115,9 +118,7 @@ class WorkerThread(QtCore.QThread,
 
 
 
-        # Helpful for those who wish to edit the code.
-        finish = time.perf_counter()
-        print('true cycles analyzed per second: ' + str(len(cycles_to_analyze)/(finish-start)))
+
         print('Complete')
 
 
