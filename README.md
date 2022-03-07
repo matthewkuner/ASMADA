@@ -18,7 +18,9 @@ This software provides a Graphical User Interface (GUI) to allow users to easily
 
 
 ## INSTALLATION:
-This project was developed in Python 3.7.3. If you plan on using the source code, rather than an application (.exe or .dmg) format, then you will need to download the same packages used in developing this project. All packages and versions used in developing this application can be found in the provided "requirements.txt" file. These packages can be easily downloaded by running the following in your command prompt (or Terminal, etc.): \
+This project was developed in Python 3.7.3. For users simply wishing to analyze their data, download the repository by clicking on "Code" --> "Download Zip". Then, navigate to the application format relevant to your operating system (.exe for Windows, .dmg for MacOS).
+
+If you plan on using the source code, then you will need to download the same dependencies. All packages and versions used in developing this application can be found in the provided "requirements.txt" file. These packages can be easily downloaded by running the following in your command prompt (or Terminal, etc.): \
     ```$ pip install -r requirements.txt``` \
 or running the equivalent within a virtual environment.
 
